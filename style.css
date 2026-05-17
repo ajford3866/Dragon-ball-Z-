@@ -20,12 +20,24 @@ h2 {
 }
 
 
+
 .object_wrap {
   
   color: black;
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+
+
+.search_wrap {
+
+   margin-top: 20px;
+   
+
+
+
 }
 
 

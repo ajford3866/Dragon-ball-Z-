@@ -54,4 +54,14 @@ function filterCharacters(event) {
   renderCharacters(characters);
 }
 
+function searchCharacters(event) {
+  const searchValue = event.target.value.toLowerCase();
+
+  const filteredCharacters = characters.filter((character) =>
+    character.name.toLowerCase().includes(searchValue)
+  );
+
+  renderCharacters(filteredCharacters);
+}
+
 main();

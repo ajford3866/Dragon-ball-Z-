@@ -15,6 +15,16 @@
           <option value="LOW_TO_HIGH">Lowest to Highest</option>
         </select>
       </nav>
+      <div class="search_wrap">
+        <input
+          type="text"
+          id="search"
+          placeholder="Search Dragon Ball characters..."
+          oninput="searchCharacters(event)"
+        />
+
+        <div id="items"></div>
+      </div>
     </section>
     <section id="items">
       <div class="name">name</div>
