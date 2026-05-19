@@ -91,7 +91,25 @@ input {
   display: flex;
   align-items: center;
   gap: 24px;
+
+  
 }
+
+
+
+  @media (max-width: 768px) {
+  .object_wrap {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
+
+
+
+
 
 .object_wrap img {
   width: 160px;
@@ -141,3 +159,4 @@ footer {
 .copyright {
   font-style: italic;
 }
+
