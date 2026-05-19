@@ -3,62 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Dragonball-Z Characters</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
+    <nav>
+      <h1>Dragonball-Z</h1>
+
+      <div class="nav_links">
+        <a href="#">Home</a>
+        <a href="#characters">Characters</a>
+        <a href="#footer">About</a>
+      </div>
+    </nav>
+
     <section id="landing">
-      <nav>
+      <div class="search_wrap">
         <select onchange="filterCharacters(event)">
           <option value="">Sort</option>
           <option value="HIGH_TO_LOW">Highest to Lowest</option>
           <option value="LOW_TO_HIGH">Lowest to Highest</option>
         </select>
-      </nav>
-      <div class="search_wrap">
+
         <input
           type="text"
           id="search"
           placeholder="Search Dragon Ball characters..."
           oninput="searchCharacters(event)"
         />
-
-        <div id="items"></div>
-      </div>
-    </section>
-    <section id="items">
-      <div class="name">name</div>
-      <div class="object_wrap">
-        <figure>
-          <img src="" alt="" />
-        </figure>
-        <h1>ki</h1>
-        <div class="stats_wrap">
-          <h2 class="object_stat">maxKi</h2>
-          <h2 class="object_stat">race</h2>
-          <h2 class="object_stat">gender</h2>
-          <h2 class="object_stat">desciption</h2>
-          <h2 class="object_stat">image</h2>
-          <h2 class="object_stat">affiliaiton</h2>
-        </div>
       </div>
     </section>
 
-    <footer>
+    <section id="characters">
+      <div id="items"></div>
+    </section>
+
+    <footer id="footer">
       <div class="footer_links">
-        <ol>
-          <a href="">Dragonball</a>
-        </ol>
-        <ol>
-          <a href="">Dragonball Z</a>
-        </ol>
-        <ol>
-          <a href="">Dragonball GT</a>
-        </ol>
+        <a href="#">Dragonball</a>
+        <a href="#">Dragonball Z</a>
+        <a href="#">Dragonball GT</a>
       </div>
-      <div class="copyright_wrap">
-        <div class="copyright">Copyright © by Al Ford 2026</div>
-      </div>
+
+      <p class="copyright">Copyright © by Al Ford 2026</p>
     </footer>
 
     <script src="index.js"></script>
