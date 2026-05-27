@@ -160,3 +160,47 @@ footer {
   font-style: italic;
 }
 
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .nav_links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .search_wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  select,
+  input {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  #items {
+    grid-template-columns: 1fr;
+  }
+
+  .object_wrap {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .name {
+    font-size: 32px;
+    text-align: center;
+  }
+
+  #landing,
+  #characters {
+    padding: 24px 16px;
+  }
+}

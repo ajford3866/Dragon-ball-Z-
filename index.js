@@ -1,16 +1,17 @@
-//"https://dragonball-api.com/api/characters?limit=100"
-
 const itemsEl = document.querySelector("#items");
 
 let characters = [];
+let displayedCharacters = [];
+let currentFilter = "";
 
 async function main() {
   const response = await fetch("https://dragonball-api.com/api/characters?limit=100");
   const data = await response.json();
 
   characters = data.items;
+  displayedCharacters = characters;
 
-  renderCharacters(characters);
+  renderCharacters(displayedCharacters);
 }
 
 function renderCharacters(charactersArray) {
@@ -26,11 +27,23 @@ function renderCharacters(charactersArray) {
           </figure>
 
           <div class="stats_wrap">
-            <h1>Ki - ${character.ki.replaceAll(".", "")}</h1>
-            <h2 class="object_stat">Max Ki - ${character.maxKi.replaceAll(".", "")}</h2>
-            <h2 class="object_stat">Race - ${character.race}</h2>
-            <h2 class="object_stat">Gender - ${character.gender}</h2>
-            <h2 class="object_stat">Affiliation - ${character.affiliation}</h2>
+            <h1>Ki - ${cleanKi(character.ki).toLocaleString()}</h1>
+
+            <h2 class="object_stat">
+              Max Ki - ${cleanKi(character.maxKi).toLocaleString()}
+            </h2>
+
+            <h2 class="object_stat">
+              Race - ${character.race}
+            </h2>
+
+            <h2 class="object_stat">
+              Gender - ${character.gender}
+            </h2>
+
+            <h2 class="object_stat">
+              Affiliation - ${character.affiliation}
+            </h2>
           </div>
         </div>
       </div>
@@ -40,34 +53,57 @@ function renderCharacters(charactersArray) {
 }
 
 function cleanKi(value) {
-  return Number(value.replaceAll(".", ""));
+  let cleanedValue = value.replaceAll(".", "").toLowerCase();
+
+  if (cleanedValue.includes("billion")) {
+    return Number(cleanedValue.replace(" billion", "")) * 1000000000;
+  }
+
+  if (cleanedValue.includes("million")) {
+    return Number(cleanedValue.replace(" million", "")) * 1000000;
+  }
+
+  if (cleanedValue.includes("thousand")) {
+    return Number(cleanedValue.replace(" thousand", "")) * 1000;
+  }
+
+  return Number(cleanedValue);
+}
+
+function sortCharacters(charactersArray) {
+  let sortedCharacters = [...charactersArray];
+
+  if (currentFilter === "HIGH_TO_LOW") {
+    sortedCharacters.sort(
+      (a, b) => cleanKi(b.ki) - cleanKi(a.ki)
+    );
+  } else if (currentFilter === "LOW_TO_HIGH") {
+    sortedCharacters.sort(
+      (a, b) => cleanKi(a.ki) - cleanKi(b.ki)
+    );
+  }
+
+  return sortedCharacters;
 }
 
 function filterCharacters(event) {
-  const filter = event.target.value;
+  currentFilter = event.target.value;
 
-  let sortedCharacters = [...characters];
+  displayedCharacters = sortCharacters(displayedCharacters);
 
-  if (filter === "HIGH_TO_LOW") {
-    sortedCharacters.sort((a, b) => cleanKi(b.ki) - cleanKi(a.ki));
-  } else if (filter === "LOW_TO_HIGH") {
-    sortedCharacters.sort((a, b) => cleanKi(a.ki) - cleanKi(b.ki));
-  }
-
-  renderCharacters(sortedCharacters);
+  renderCharacters(displayedCharacters);
 }
 
-async function searchCharacters(event) {
+function searchCharacters(event) {
   const searchValue = event.target.value.toLowerCase();
 
-  const response = await fetch("https://dragonball-api.com/api/characters?limit=100");
-  const data = await response.json();
-
-  const filteredCharacters = data.items.filter((character) =>
+  displayedCharacters = characters.filter((character) =>
     character.name.toLowerCase().includes(searchValue)
   );
 
-  renderCharacters(filteredCharacters);
+  displayedCharacters = sortCharacters(displayedCharacters);
+
+  renderCharacters(displayedCharacters);
 }
 
 main();
