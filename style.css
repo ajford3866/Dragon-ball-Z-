@@ -204,3 +204,25 @@ footer {
     padding: 24px 16px;
   }
 }
+
+.character {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.character:hover {
+  transform: scale(1.02);
+}
+
+.single-character-card {
+  max-width: 700px;
+  margin: 40px auto;
+  text-align: center;
+  padding: 24px;
+}
+
+.single-character-card img {
+  max-width: 300px;
+  width: 100%;
+}

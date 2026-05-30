@@ -18,7 +18,7 @@ function renderCharacters(charactersArray) {
   itemsEl.innerHTML = charactersArray
     .map(
       (character) => `
-      <div class="character">
+      <a href="./character.html?id=${character.id}" class="character">
         <div class="name">${character.name}</div>
 
         <div class="object_wrap">
@@ -46,7 +46,7 @@ function renderCharacters(charactersArray) {
             </h2>
           </div>
         </div>
-      </div>
+      </a>
     `
     )
     .join("");
